@@ -42,3 +42,40 @@ locate this VVVV
 "C_Cpp.default.includePath": [
         "${workspaceFolder}/src", <-- Add this
         "${VULKAN_SDK}/Include",  <-- Add this
+
+=====================================================================
+Download GLFW
+
+GLFW URL: https://www.glfw.org/download.html
+
+Click download
+
+Add this to a directory one level up from the project
+
+
+"C_Cpp.default.includePath": [
+        "${workspaceFolder}/src",
+        "${VULKAN_SDK}/Include",
+        "$(ProjectDir)External Libraries\\Vulkan\\Include",
+        "$(ProjectDir)\\External Libraries\\GLFW\\include",
+        "$(ProjectDir)\\External Libraries\\glm",
+        "${workspaceFolder}/../externals/GLFW/include",         <-- Added this
+        "${workspaceFolder}/../externals/GLM"
+    ],
+
+=====================================================================
+Download GLM 
+
+Download URL: https://github.com/g-truc/glm/releases/tag/1.0.1
+
+Add this to a directory one level up from the project
+
+"C_Cpp.default.includePath": [
+        "${workspaceFolder}/src",
+        "${VULKAN_SDK}/Include",
+        "$(ProjectDir)External Libraries\\Vulkan\\Include",
+        "$(ProjectDir)\\External Libraries\\GLFW\\include",
+        "$(ProjectDir)\\External Libraries\\glm",
+        "${workspaceFolder}/../externals/GLFW/include",
+        "${workspaceFolder}/../externals/GLM"                   <-- Added this
+    ],

@@ -1,25 +1,40 @@
-#include <vulkan/vulkan.h>
+# define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
+
+#define GLM_FORCE_RADIANS
+#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+#include <glm/glm.hpp>
+#include <glm/mat4x4.hpp>
 #include <iostream>
 
 int main()
 {
-    VkApplicationInfo appInfo = {};
-    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.pApplicationName = "Pong";
-    appInfo.pEngineName = "Ponggine";
+    glfwInit();
 
-    VkInstanceCreateInfo instanceInfo = {};
-    instanceInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-    instanceInfo.pApplicationInfo = &appInfo;
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    GLFWwindow* window = glfwCreateWindow(800, 600, "Vulkan Example", nullptr, nullptr);
 
-    VkInstance instance;
+    uint32_t extension = 0;
+    vkEnumerateInstanceExtensionProperties(nullptr, &extension, nullptr);
 
-    VkResult result = vkCreateInstance(&instanceInfo, 0, &instance);
-    if(result == VK_SUCCESS)
-    {
-        std::cout << "Successfully created vulkan instance" << std::endl;
+    std::cout<<"extensions: "<<extension<<std::endl;
+
+    std::cout<<"Hello!"<<std::endl;
+
+    printf("Hi there");
+
+    glm::mat4 testMatrix(1.0f);
+    glm::vec4 testVector(1.0f);
+
+    auto testResult = testMatrix * testVector;
+
+    while(!glfwWindowShouldClose(window)){
+        glfwPollEvents();
     }
 
+    glfwDestroyWindow(window);
+
+    glfwTerminate();
 
     return 0;
 }
