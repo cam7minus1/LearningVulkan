@@ -1,8 +1,11 @@
 @echo off
 
+setlocal enabledelayedexpansion
+
 call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
 
 SET includes=/Isrc ^
+            /I"Header Files" ^
             /I%VULKAN_SDK%/include ^
             /I..\externals\GLFW\include ^
             /I..\externals\GLM
@@ -18,8 +21,12 @@ SET links=/link ^
 
 SET defines=/DDEBUG
 
-REM -------------------------------------
-REM The crucial part: /MD for dynamic CRT
-REM -------------------------------------
-cl /EHsc /MD %includes% %defines% src\main.cpp %links%
+REM Collect all .cpp files in src folder
+set files=
+for %%f in (src\*.cpp) do (
+    set files=!files! %%f
+)
+
+REM Build all collected .cpp files
+cl /EHsc /MD %includes% %defines% !files! /out:main.exe %links%
 
